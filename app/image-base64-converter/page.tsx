@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef } from 'react';
 import { Copy, RotateCcw, Download, Upload, Image as ImageIcon, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
