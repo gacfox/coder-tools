@@ -9,7 +9,7 @@ import 'prismjs/components/prism-sql';
 import 'prismjs/themes/prism-tomorrow.css';
 
 type KeywordCase = 'preserve' | 'upper' | 'lower';
-type Dialect = 'sql' | 'mysql' | 'postgresql' | 'mssql' | 'db2' | 'plsql' | 'n1ql' | 'redshift' | 'spark' | 'trino';
+type Dialect = 'sql' | 'mysql' | 'postgresql' | 'bigquery' | 'db2' | 'db2i' | 'duckdb' | 'hive' | 'mariadb' | 'tidb' | 'sqlite' | 'plsql' | 'n1ql' | 'redshift' | 'spark' | 'trino' | 'transactsql' | 'singlestoredb' | 'snowflake' | 'tsql';
 
 interface FormatOptions {
   language?: Dialect;
@@ -157,7 +157,7 @@ export default function SQLFormatter() {
                   <option value="sql">Standard SQL</option>
                   <option value="mysql">MySQL</option>
                   <option value="postgresql">PostgreSQL</option>
-                  <option value="mssql">SQL Server</option>
+                  <option value="transactsql">SQL Server</option>
                   <option value="db2">DB2</option>
                   <option value="plsql">PL/SQL</option>
                   <option value="n1ql">N1QL</option>
