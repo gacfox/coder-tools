@@ -17,6 +17,9 @@ import HashCalculator from './hash-calculator/page';
 import PasswordGenerator from './password-generator/page';
 import TimestampConverter from './timestamp-converter/page';
 import AsciiArtGenerator from './ascii-art-generator/page';
+import UserAgentAnalyzer from './user-agent-analyzer/page';
+import UUIDGenerator from './uuid-generator/page';
+import SQLFormatter from './sql-formatter/page';
 
 interface Tool {
   id: string;
@@ -72,6 +75,9 @@ const CATEGORIES: Category[] = [
     icon: <Binary className="w-4 h-4" />,
     tools: [
       { id: 'timestamp-converter', name: 'Unix时间戳转换' },
+      { id: 'user-agent-analyzer', name: 'User-Agent分析' },
+      { id: 'uuid-generator', name: 'UUIDv4生成器' },
+      { id: 'sql-formatter', name: 'SQL格式化工具' },
     ],
   },
 ];
@@ -200,6 +206,12 @@ export default function Home() {
             <TimestampConverter />
           ) : selectedTool === 'ascii-art-generator' ? (
             <AsciiArtGenerator />
+          ) : selectedTool === 'user-agent-analyzer' ? (
+            <UserAgentAnalyzer />
+          ) : selectedTool === 'uuid-generator' ? (
+            <UUIDGenerator />
+          ) : selectedTool === 'sql-formatter' ? (
+            <SQLFormatter />
           ) : selectedTool === '' ? (
             <>
               <header className="space-y-2">

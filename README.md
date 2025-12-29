@@ -36,6 +36,9 @@ Code Tools是一个为开发者设计的在线工具网站。
 ### 开发工具
 
 * Unix时间戳转换
+* User-Agent分析
+* UUIDv4生成器
+* SQL格式化工具
 
 ## 项目结构
 
@@ -55,6 +58,9 @@ app/
 ├── password-generator/     # 强随机密码生成器
 ├── timestamp-converter/    # Unix时间戳转换
 ├── ascii-art-generator/    # ASCII Art生成器
+├── user-agent-analyzer/    # User-Agent分析
+├── uuid-generator/         # UUIDv4生成器
+├── sql-formatter/          # SQL格式化工具
 ├── favicon.ico
 ├── globals.css
 ├── layout.tsx
