@@ -1,25 +1,37 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ChevronRight, ChevronDown, FlaskConical, Search, Hash, Image, Link, Binary, Regex, FileText, QrCode, Palette } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import Base64Converter from './base64-converter/page';
-import ImageBase64Converter from './image-base64-converter/page';
-import UrlEncoderDecoder from './url-encoder-decoder/page';
-import BaseConverter from './base-converter/page';
-import RegexTester from './regex-tester/page';
-import TextDiff from './text-diff/page';
-import QrGenerator from './qr-generator/page';
-import QrScanner from './qr-scanner/page';
-import ImageResizer from './image-resizer/page';
-import GradientGenerator from './gradient-generator/page';
-import HashCalculator from './hash-calculator/page';
-import PasswordGenerator from './password-generator/page';
-import TimestampConverter from './timestamp-converter/page';
-import AsciiArtGenerator from './ascii-art-generator/page';
-import UserAgentAnalyzer from './user-agent-analyzer/page';
-import UUIDGenerator from './uuid-generator/page';
-import SQLFormatter from './sql-formatter/page';
+import { useState } from "react";
+import {
+  ChevronRight,
+  ChevronDown,
+  FlaskConical,
+  Search,
+  Hash,
+  Binary,
+  Regex,
+  QrCode,
+  ShieldCheck,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import Base64Converter from "./base64-converter/page";
+import ImageBase64Converter from "./image-base64-converter/page";
+import UrlEncoderDecoder from "./url-encoder-decoder/page";
+import BaseConverter from "./base-converter/page";
+import RegexTester from "./regex-tester/page";
+import TextDiff from "./text-diff/page";
+import QrGenerator from "./qr-generator/page";
+import QrScanner from "./qr-scanner/page";
+import ImageResizer from "./image-resizer/page";
+import GradientGenerator from "./gradient-generator/page";
+import HashCalculator from "./hash-calculator/page";
+import PasswordGenerator from "./password-generator/page";
+import TimestampConverter from "./timestamp-converter/page";
+import AsciiArtGenerator from "./ascii-art-generator/page";
+import UserAgentAnalyzer from "./user-agent-analyzer/page";
+import UUIDGenerator from "./uuid-generator/page";
+import SQLFormatter from "./sql-formatter/page";
+import UnicodeEscape from "./unicode-escape/page";
+import JwtParser from "./jwt-parser/page";
 
 interface Tool {
   id: string;
@@ -34,84 +46,88 @@ interface Category {
 
 const CATEGORIES: Category[] = [
   {
-    name: '编码转换',
+    name: "编码转换",
     icon: <Hash className="w-4 h-4" />,
     tools: [
-      { id: 'base64-converter', name: 'BASE64编解码' },
-      { id: 'image-base64-converter', name: 'BASE64图片编解码' },
-      { id: 'url-encoder-decoder', name: 'URL编解码' },
-      { id: 'base-converter', name: '进制转换' },
+      { id: "base64-converter", name: "BASE64编解码" },
+      { id: "image-base64-converter", name: "BASE64图片编解码" },
+      { id: "url-encoder-decoder", name: "URL编解码" },
+      { id: "base-converter", name: "进制转换" },
+      { id: "unicode-escape", name: "Unicode转义" },
     ],
   },
   {
-    name: '文本工具',
+    name: "文本工具",
     icon: <Regex className="w-4 h-4" />,
     tools: [
-      { id: 'regex-tester', name: '正则表达式测试' },
-      { id: 'text-diff', name: '文本差异对比' },
+      { id: "regex-tester", name: "正则表达式测试" },
+      { id: "text-diff", name: "文本差异对比" },
     ],
   },
   {
-    name: '图形工具',
+    name: "图形工具",
     icon: <QrCode className="w-4 h-4" />,
     tools: [
-      { id: 'qr-generator', name: '二维码生成器' },
-      { id: 'qr-scanner', name: '二维码识别' },
-      { id: 'image-resizer', name: '图片缩放' },
-      { id: 'ascii-art-generator', name: 'ASCII Art生成器' },
-      { id: 'gradient-generator', name: '渐变CSS生成器' },
+      { id: "qr-generator", name: "二维码生成器" },
+      { id: "qr-scanner", name: "二维码识别" },
+      { id: "image-resizer", name: "图片缩放" },
+      { id: "ascii-art-generator", name: "ASCII Art生成器" },
+      { id: "gradient-generator", name: "渐变CSS生成器" },
     ],
   },
   {
-    name: '加密工具',
+    name: "加密工具",
     icon: <Hash className="w-4 h-4" />,
     tools: [
-      { id: 'hash-calculator', name: 'HASH计算' },
-      { id: 'password-generator', name: '强随机密码生成器' },
+      { id: "hash-calculator", name: "HASH计算" },
+      { id: "password-generator", name: "强随机密码生成器" },
     ],
   },
   {
-    name: '开发工具',
+    name: "开发工具",
     icon: <Binary className="w-4 h-4" />,
     tools: [
-      { id: 'timestamp-converter', name: 'Unix时间戳转换' },
-      { id: 'user-agent-analyzer', name: 'User-Agent分析' },
-      { id: 'uuid-generator', name: 'UUIDv4生成器' },
-      { id: 'sql-formatter', name: 'SQL格式化工具' },
+      { id: "timestamp-converter", name: "Unix时间戳转换" },
+      { id: "user-agent-analyzer", name: "User-Agent分析" },
+      { id: "uuid-generator", name: "UUIDv4生成器" },
+      { id: "sql-formatter", name: "SQL格式化工具" },
+      { id: "jwt-parser", name: "JWT解析" },
     ],
   },
 ];
 
 export default function Home() {
-  const [expandedCategories, setExpandedCategories] = useState<string[]>(['编码转换']);
-  const [selectedTool, setSelectedTool] = useState<string>('');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [expandedCategories, setExpandedCategories] = useState<string[]>([
+    "编码转换",
+  ]);
+  const [selectedTool, setSelectedTool] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   // Filter tools based on search query
-  const filteredCategories = CATEGORIES.map(category => {
+  const filteredCategories = CATEGORIES.map((category) => {
     if (!searchQuery) {
       return category;
     }
 
-    const filteredTools = category.tools.filter(tool =>
-      tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tool.id.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredTools = category.tools.filter(
+      (tool) =>
+        tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tool.id.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return {
       ...category,
-      tools: filteredTools
+      tools: filteredTools,
     };
-  }).filter(category =>
-    // Only show categories that have matching tools or if there's no search query
-    !searchQuery || category.tools.length > 0
+  }).filter(
+    (category) =>
+      // Only show categories that have matching tools or if there's no search query
+      !searchQuery || category.tools.length > 0
   );
 
   const toggleCategory = (name: string) => {
-    setExpandedCategories(prev =>
-      prev.includes(name)
-        ? prev.filter(c => c !== name)
-        : [...prev, name]
+    setExpandedCategories((prev) =>
+      prev.includes(name) ? prev.filter((c) => c !== name) : [...prev, name]
     );
   };
 
@@ -178,44 +194,50 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 overflow-auto p-8 relative">
         <div className="max-w-4xl mx-auto space-y-8">
-          {selectedTool === 'base64-converter' ? (
+          {selectedTool === "base64-converter" ? (
             <Base64Converter />
-          ) : selectedTool === 'image-base64-converter' ? (
+          ) : selectedTool === "image-base64-converter" ? (
             <ImageBase64Converter />
-          ) : selectedTool === 'url-encoder-decoder' ? (
+          ) : selectedTool === "url-encoder-decoder" ? (
             <UrlEncoderDecoder />
-          ) : selectedTool === 'base-converter' ? (
+          ) : selectedTool === "base-converter" ? (
             <BaseConverter />
-          ) : selectedTool === 'regex-tester' ? (
+          ) : selectedTool === "regex-tester" ? (
             <RegexTester />
-          ) : selectedTool === 'text-diff' ? (
+          ) : selectedTool === "text-diff" ? (
             <TextDiff />
-          ) : selectedTool === 'qr-generator' ? (
+          ) : selectedTool === "qr-generator" ? (
             <QrGenerator />
-          ) : selectedTool === 'qr-scanner' ? (
+          ) : selectedTool === "qr-scanner" ? (
             <QrScanner />
-          ) : selectedTool === 'image-resizer' ? (
+          ) : selectedTool === "image-resizer" ? (
             <ImageResizer />
-          ) : selectedTool === 'gradient-generator' ? (
+          ) : selectedTool === "gradient-generator" ? (
             <GradientGenerator />
-          ) : selectedTool === 'hash-calculator' ? (
+          ) : selectedTool === "hash-calculator" ? (
             <HashCalculator />
-          ) : selectedTool === 'password-generator' ? (
+          ) : selectedTool === "password-generator" ? (
             <PasswordGenerator />
-          ) : selectedTool === 'timestamp-converter' ? (
+          ) : selectedTool === "timestamp-converter" ? (
             <TimestampConverter />
-          ) : selectedTool === 'ascii-art-generator' ? (
+          ) : selectedTool === "ascii-art-generator" ? (
             <AsciiArtGenerator />
-          ) : selectedTool === 'user-agent-analyzer' ? (
+          ) : selectedTool === "user-agent-analyzer" ? (
             <UserAgentAnalyzer />
-          ) : selectedTool === 'uuid-generator' ? (
+          ) : selectedTool === "uuid-generator" ? (
             <UUIDGenerator />
-          ) : selectedTool === 'sql-formatter' ? (
+          ) : selectedTool === "sql-formatter" ? (
             <SQLFormatter />
-          ) : selectedTool === '' ? (
+          ) : selectedTool === "unicode-escape" ? (
+            <UnicodeEscape />
+          ) : selectedTool === "jwt-parser" ? (
+            <JwtParser />
+          ) : selectedTool === "" ? (
             <>
               <header className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">CODER TOOLS</h2>
+                <h2 className="text-3xl font-bold tracking-tight">
+                  CODER TOOLS
+                </h2>
                 <p className="text-muted-foreground text-lg">
                   选择左侧工具开始使用
                 </p>

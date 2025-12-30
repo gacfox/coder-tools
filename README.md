@@ -14,6 +14,7 @@ Code Tools是一个为开发者设计的在线工具网站。
 * BASE64图片编解码
 * URL编解码
 * 进制转换
+* Unicode转义
 
 ### 文本工具
 
@@ -39,33 +40,7 @@ Code Tools是一个为开发者设计的在线工具网站。
 * User-Agent分析
 * UUIDv4生成器
 * SQL格式化工具
-
-## 项目结构
-
-```
-app/
-├── base-converter/          # 进制转换工具
-├── base64-converter/        # BASE64编解码工具
-├── gradient-generator/      # 渐变CSS生成器
-├── image-base64-converter/  # BASE64图片编解码
-├── image-resizer/          # 图片缩放工具
-├── qr-generator/           # 二维码生成器
-├── qr-scanner/             # 二维码识别
-├── regex-tester/           # 正则表达式测试
-├── text-diff/              # 文本差异对比
-├── url-encoder-decoder/    # URL编解码
-├── hash-calculator/        # HASH计算工具
-├── password-generator/     # 强随机密码生成器
-├── timestamp-converter/    # Unix时间戳转换
-├── ascii-art-generator/    # ASCII Art生成器
-├── user-agent-analyzer/    # User-Agent分析
-├── uuid-generator/         # UUIDv4生成器
-├── sql-formatter/          # SQL格式化工具
-├── favicon.ico
-├── globals.css
-├── layout.tsx
-└── page.tsx
-```
+* JWT解析
 
 ## 开发环境搭建
 
