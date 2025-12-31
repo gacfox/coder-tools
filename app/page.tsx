@@ -11,6 +11,7 @@ import {
   Regex,
   QrCode,
   ShieldCheck,
+  FileJson,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Base64Converter from "./base64-converter/page";
@@ -32,6 +33,7 @@ import UUIDGenerator from "./uuid-generator/page";
 import SQLFormatter from "./sql-formatter/page";
 import UnicodeEscape from "./unicode-escape/page";
 import JwtParser from "./jwt-parser/page";
+import JsonViewer from "./json-viewer/page";
 
 interface Tool {
   id: string;
@@ -92,6 +94,7 @@ const CATEGORIES: Category[] = [
       { id: "uuid-generator", name: "UUIDv4生成器" },
       { id: "sql-formatter", name: "SQL格式化工具" },
       { id: "jwt-parser", name: "JWT解析" },
+      { id: "json-viewer", name: "JSON预览器" },
     ],
   },
 ];
@@ -232,6 +235,8 @@ export default function Home() {
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (
             <JwtParser />
+          ) : selectedTool === "json-viewer" ? (
+            <JsonViewer />
           ) : selectedTool === "" ? (
             <>
               <header className="space-y-2">
