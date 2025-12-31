@@ -3,10 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Copy, Download, Eye, Code, AlignLeft, Minus } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import dynamic from 'next/dynamic';
-
-// Dynamically import ReactJson to avoid SSR issues
-const ReactJson = dynamic(() => import('react-json-view'), { ssr: false });
+import ReactJson from '@uiw/react-json-view';
 
 export default function JsonViewer() {
   const [jsonText, setJsonText] = useState('');
@@ -229,10 +226,9 @@ export default function JsonViewer() {
                 <label className="text-sm font-medium text-muted-foreground">树形视图</label>
               </div>
               <div className="p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 min-h-[400px]">
-                {parsedJson !== null ? (
+                {parsedJson ? (
                   <ReactJson
-                    src={parsedJson}
-                    theme="rjv-default"
+                    value={parsedJson}
                     style={{
                       backgroundColor: 'transparent',
                       padding: '1rem',
@@ -240,7 +236,6 @@ export default function JsonViewer() {
                     }}
                     indentWidth={2}
                     collapsed={false}
-                    enableClipboard={true}
                     displayDataTypes={false}
                   />
                 ) : (
