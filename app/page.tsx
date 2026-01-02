@@ -12,6 +12,7 @@ import {
   QrCode,
   ShieldCheck,
   FileJson,
+  Code as CodeIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Base64Converter from "./base64-converter/page";
@@ -34,6 +35,7 @@ import SQLFormatter from "./sql-formatter/page";
 import UnicodeEscape from "./unicode-escape/page";
 import JwtParser from "./jwt-parser/page";
 import JsonViewer from "./json-viewer/page";
+import RandomCodeGenerator from "./random-code-generator/page";
 
 interface Tool {
   id: string;
@@ -95,6 +97,13 @@ const CATEGORIES: Category[] = [
       { id: "sql-formatter", name: "SQL格式化工具" },
       { id: "jwt-parser", name: "JWT解析" },
       { id: "json-viewer", name: "JSON预览器" },
+    ],
+  },
+  {
+    name: "审查工具",
+    icon: <CodeIcon className="w-4 h-4" />,
+    tools: [
+      { id: "random-code-generator", name: "随机代码生成器" },
     ],
   },
 ];
@@ -237,6 +246,8 @@ export default function Home() {
             <JwtParser />
           ) : selectedTool === "json-viewer" ? (
             <JsonViewer />
+          ) : selectedTool === "random-code-generator" ? (
+            <RandomCodeGenerator />
           ) : selectedTool === "" ? (
             <>
               <header className="space-y-2">
