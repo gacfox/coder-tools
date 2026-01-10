@@ -62,5 +62,3 @@ Code Tools是一个为开发者设计的在线工具网站。
 ## 部署
 
 项目可以部署到任何支持 Next.js 的平台，如 Vercel、Netlify 等。
-
-**免责声明**: 这个代码仓库完全由AI生成，旨在体验Vibe Coding模式，可能存在Bug，内容请仔细甄别。
