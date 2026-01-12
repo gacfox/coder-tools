@@ -33,6 +33,7 @@ import UserAgentAnalyzer from "./user-agent-analyzer/page";
 import UUIDGenerator from "./uuid-generator/page";
 import SQLFormatter from "./sql-formatter/page";
 import CronExpressionTester from "./cron-expression-tester/page";
+import GitCheatSheet from "./git-cheat-sheet/page";
 import UnicodeEscape from "./unicode-escape/page";
 import JwtParser from "./jwt-parser/page";
 import JsonViewer from "./json-viewer/page";
@@ -97,6 +98,7 @@ const CATEGORIES: Category[] = [
       { id: "uuid-generator", name: "UUIDv4生成器" },
       { id: "sql-formatter", name: "SQL格式化工具" },
       { id: "cron-expression-tester", name: "Cron表达式测试" },
+      { id: "git-cheat-sheet", name: "Git命令速查" },
       { id: "jwt-parser", name: "JWT解析" },
       { id: "json-viewer", name: "JSON预览器" },
     ],
@@ -244,6 +246,8 @@ export default function Home() {
             <SQLFormatter />
           ) : selectedTool === "cron-expression-tester" ? (
             <CronExpressionTester />
+          ) : selectedTool === "git-cheat-sheet" ? (
+            <GitCheatSheet />
           ) : selectedTool === "unicode-escape" ? (
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (
