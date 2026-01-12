@@ -32,6 +32,7 @@ import AsciiArtGenerator from "./ascii-art-generator/page";
 import UserAgentAnalyzer from "./user-agent-analyzer/page";
 import UUIDGenerator from "./uuid-generator/page";
 import SQLFormatter from "./sql-formatter/page";
+import CronExpressionTester from "./cron-expression-tester/page";
 import UnicodeEscape from "./unicode-escape/page";
 import JwtParser from "./jwt-parser/page";
 import JsonViewer from "./json-viewer/page";
@@ -95,6 +96,7 @@ const CATEGORIES: Category[] = [
       { id: "user-agent-analyzer", name: "User-Agent分析" },
       { id: "uuid-generator", name: "UUIDv4生成器" },
       { id: "sql-formatter", name: "SQL格式化工具" },
+      { id: "cron-expression-tester", name: "Cron表达式测试" },
       { id: "jwt-parser", name: "JWT解析" },
       { id: "json-viewer", name: "JSON预览器" },
     ],
@@ -240,6 +242,8 @@ export default function Home() {
             <UUIDGenerator />
           ) : selectedTool === "sql-formatter" ? (
             <SQLFormatter />
+          ) : selectedTool === "cron-expression-tester" ? (
+            <CronExpressionTester />
           ) : selectedTool === "unicode-escape" ? (
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (
