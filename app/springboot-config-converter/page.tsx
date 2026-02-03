@@ -126,11 +126,13 @@ const parseProperties = (input: string) => {
   return root;
 };
 
+type StackEntry =
+  | { indent: number; type: "object"; value: { [key: string]: NodeValue } }
+  | { indent: number; type: "array"; value: NodeValue[] };
+
 const parseYaml = (input: string) => {
   const root: { [key: string]: NodeValue } = {};
-  const stack: Array<{ indent: number; value: NodeValue; type: "object" | "array" }> = [
-    { indent: -1, value: root, type: "object" },
-  ];
+  const stack: StackEntry[] = [{ indent: -1, value: root, type: "object" }];
   let pending: { container: { [key: string]: NodeValue }; key: string; indent: number } | null =
     null;
 
@@ -142,11 +144,13 @@ const parseYaml = (input: string) => {
 
     if (pending && indent > pending.indent) {
       if (content.startsWith("- ")) {
-        pending.container[pending.key] = [];
-        stack.push({ indent: pending.indent, value: pending.container[pending.key], type: "array" });
+        const nextArray: NodeValue[] = [];
+        pending.container[pending.key] = nextArray;
+        stack.push({ indent: pending.indent, value: nextArray, type: "array" });
       } else {
-        pending.container[pending.key] = {};
-        stack.push({ indent: pending.indent, value: pending.container[pending.key], type: "object" });
+        const nextObject: { [key: string]: NodeValue } = {};
+        pending.container[pending.key] = nextObject;
+        stack.push({ indent: pending.indent, value: nextObject, type: "object" });
       }
       pending = null;
     } else if (pending && indent <= pending.indent) {
@@ -192,7 +196,7 @@ const parseYaml = (input: string) => {
     const key = content.slice(0, colonIndex).trim();
     const value = content.slice(colonIndex + 1).trim();
 
-    if (!isPlainObject(current.value)) continue;
+    if (current.type !== "object") continue;
     if (value) {
       current.value[key] = parseScalar(value);
     } else {
