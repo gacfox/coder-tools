@@ -40,7 +40,18 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# AI
-.gemini
-QWEN.md
-AGENTS.md
+### AI ###
+AGENTS*.md
+CLAUDE*.md
+GEMINI*.md
+QWEN*.md
+.cursorrules
+.windsurfrules
+CODEX*.md
+.claude/
+.gemini/
+.cursor/
+.windsurf/
+.clinerules/
+.ai/
+.vibecache/
