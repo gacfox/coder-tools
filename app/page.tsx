@@ -24,6 +24,7 @@ import TextDiff from "./text-diff/page";
 import QrGenerator from "./qr-generator/page";
 import QrScanner from "./qr-scanner/page";
 import ImageResizer from "./image-resizer/page";
+import ImageCropper from "./image-cropper/page";
 import GradientGenerator from "./gradient-generator/page";
 import HashCalculator from "./hash-calculator/page";
 import PasswordGenerator from "./password-generator/page";
@@ -78,6 +79,7 @@ const CATEGORIES: Category[] = [
       { id: "qr-generator", name: "二维码生成器" },
       { id: "qr-scanner", name: "二维码识别" },
       { id: "image-resizer", name: "图片缩放" },
+      { id: "image-cropper", name: "图片裁剪" },
       { id: "ascii-art-generator", name: "ASCII Art生成器" },
       { id: "gradient-generator", name: "渐变CSS生成器" },
     ],
@@ -230,6 +232,8 @@ export default function Home() {
             <QrScanner />
           ) : selectedTool === "image-resizer" ? (
             <ImageResizer />
+          ) : selectedTool === "image-cropper" ? (
+            <ImageCropper />
           ) : selectedTool === "gradient-generator" ? (
             <GradientGenerator />
           ) : selectedTool === "hash-calculator" ? (
