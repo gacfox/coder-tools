@@ -37,6 +37,7 @@ import SQLFormatter from "./sql-formatter/page";
 import CronExpressionTester from "./cron-expression-tester/page";
 import GitCheatSheet from "./git-cheat-sheet/page";
 import CurlToFetch from "./curl-to-fetch/page";
+import SpringBootConfigConverter from "./springboot-config-converter/page";
 import UnicodeEscape from "./unicode-escape/page";
 import JwtParser from "./jwt-parser/page";
 import JsonViewer from "./json-viewer/page";
@@ -107,6 +108,7 @@ const CATEGORIES: Category[] = [
       { id: "curl-to-fetch", name: "cURL转Fetch" },
       { id: "jwt-parser", name: "JWT解析" },
       { id: "json-viewer", name: "JSON预览器" },
+      { id: "springboot-config-converter", name: "SpringBoot配置转换器" },
     ],
   },
   {
@@ -260,6 +262,8 @@ export default function Home() {
             <GitCheatSheet />
           ) : selectedTool === "curl-to-fetch" ? (
             <CurlToFetch />
+          ) : selectedTool === "springboot-config-converter" ? (
+            <SpringBootConfigConverter />
           ) : selectedTool === "unicode-escape" ? (
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (
