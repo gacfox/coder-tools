@@ -19,6 +19,7 @@ import Base64Converter from "./base64-converter/page";
 import ImageBase64Converter from "./image-base64-converter/page";
 import UrlEncoderDecoder from "./url-encoder-decoder/page";
 import BaseConverter from "./base-converter/page";
+import MorseCodeConverter from "./morse-code-converter/page";
 import RegexTester from "./regex-tester/page";
 import TextDiff from "./text-diff/page";
 import QrGenerator from "./qr-generator/page";
@@ -62,6 +63,7 @@ const CATEGORIES: Category[] = [
       { id: "url-encoder-decoder", name: "URL编解码" },
       { id: "base-converter", name: "进制转换" },
       { id: "unicode-escape", name: "Unicode转义" },
+      { id: "morse-code-converter", name: "摩斯电码转换器" },
     ],
   },
   {
@@ -222,6 +224,8 @@ export default function Home() {
             <UrlEncoderDecoder />
           ) : selectedTool === "base-converter" ? (
             <BaseConverter />
+          ) : selectedTool === "morse-code-converter" ? (
+            <MorseCodeConverter />
           ) : selectedTool === "regex-tester" ? (
             <RegexTester />
           ) : selectedTool === "text-diff" ? (
