@@ -193,7 +193,7 @@ export default function ImageCropper() {
         </p>
       </header>
 
-      <div className="glass-card rounded-[2rem] p-8 shadow-2xl border-white/40">
+      <div className="glass-card rounded-4xl p-8 shadow-2xl border-white/40">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
             <div
