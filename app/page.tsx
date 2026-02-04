@@ -33,6 +33,7 @@ import PasswordGenerator from "./password-generator/page";
 import TimestampConverter from "./timestamp-converter/page";
 import AsciiArtGenerator from "./ascii-art-generator/page";
 import ColorSchemePicker from "./color-scheme-picker/page";
+import ColorValueConverter from "./color-value-converter/page";
 import UserAgentAnalyzer from "./user-agent-analyzer/page";
 import UUIDGenerator from "./uuid-generator/page";
 import SQLFormatter from "./sql-formatter/page";
@@ -119,6 +120,7 @@ const CATEGORIES: Category[] = [
     tools: [
       { id: "gradient-generator", name: "渐变CSS生成器" },
       { id: "color-scheme-picker", name: "配色方案选择器" },
+      { id: "color-value-converter", name: "颜色值转换器" },
     ],
   },
   {
@@ -256,6 +258,8 @@ export default function Home() {
             <GradientGenerator />
           ) : selectedTool === "color-scheme-picker" ? (
             <ColorSchemePicker />
+          ) : selectedTool === "color-value-converter" ? (
+            <ColorValueConverter />
           ) : selectedTool === "hash-calculator" ? (
             <HashCalculator />
           ) : selectedTool === "password-generator" ? (
