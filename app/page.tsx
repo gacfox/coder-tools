@@ -32,6 +32,7 @@ import HashCalculator from "./hash-calculator/page";
 import PasswordGenerator from "./password-generator/page";
 import TimestampConverter from "./timestamp-converter/page";
 import AsciiArtGenerator from "./ascii-art-generator/page";
+import ColorSchemePicker from "./color-scheme-picker/page";
 import UserAgentAnalyzer from "./user-agent-analyzer/page";
 import UUIDGenerator from "./uuid-generator/page";
 import SQLFormatter from "./sql-formatter/page";
@@ -115,7 +116,10 @@ const CATEGORIES: Category[] = [
   {
     name: "设计工具",
     icon: <FlaskConical className="w-4 h-4" />,
-    tools: [{ id: "gradient-generator", name: "渐变CSS生成器" }],
+    tools: [
+      { id: "gradient-generator", name: "渐变CSS生成器" },
+      { id: "color-scheme-picker", name: "配色方案选择器" },
+    ],
   },
   {
     name: "审查工具",
@@ -250,6 +254,8 @@ export default function Home() {
             <ImageCropper />
           ) : selectedTool === "gradient-generator" ? (
             <GradientGenerator />
+          ) : selectedTool === "color-scheme-picker" ? (
+            <ColorSchemePicker />
           ) : selectedTool === "hash-calculator" ? (
             <HashCalculator />
           ) : selectedTool === "password-generator" ? (
