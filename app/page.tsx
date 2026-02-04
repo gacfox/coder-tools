@@ -20,6 +20,7 @@ import ImageBase64Converter from "./image-base64-converter/page";
 import UrlEncoderDecoder from "./url-encoder-decoder/page";
 import BaseConverter from "./base-converter/page";
 import MorseCodeConverter from "./morse-code-converter/page";
+import RomanNumeralConverter from "./roman-numeral-converter/page";
 import RegexTester from "./regex-tester/page";
 import TextDiff from "./text-diff/page";
 import QrGenerator from "./qr-generator/page";
@@ -65,6 +66,7 @@ const CATEGORIES: Category[] = [
       { id: "base-converter", name: "进制转换" },
       { id: "unicode-escape", name: "Unicode转义" },
       { id: "morse-code-converter", name: "摩斯电码转换器" },
+      { id: "roman-numeral-converter", name: "罗马数字转换器" },
     ],
   },
   {
@@ -84,7 +86,6 @@ const CATEGORIES: Category[] = [
       { id: "image-resizer", name: "图片缩放" },
       { id: "image-cropper", name: "图片裁剪" },
       { id: "ascii-art-generator", name: "ASCII Art生成器" },
-      { id: "gradient-generator", name: "渐变CSS生成器" },
     ],
   },
   {
@@ -110,6 +111,11 @@ const CATEGORIES: Category[] = [
       { id: "json-viewer", name: "JSON预览器" },
       { id: "springboot-config-converter", name: "SpringBoot配置转换器" },
     ],
+  },
+  {
+    name: "设计工具",
+    icon: <FlaskConical className="w-4 h-4" />,
+    tools: [{ id: "gradient-generator", name: "渐变CSS生成器" }],
   },
   {
     name: "审查工具",
@@ -228,6 +234,8 @@ export default function Home() {
             <BaseConverter />
           ) : selectedTool === "morse-code-converter" ? (
             <MorseCodeConverter />
+          ) : selectedTool === "roman-numeral-converter" ? (
+            <RomanNumeralConverter />
           ) : selectedTool === "regex-tester" ? (
             <RegexTester />
           ) : selectedTool === "text-diff" ? (
