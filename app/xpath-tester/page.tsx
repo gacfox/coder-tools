@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 type MatchItem = { path: string; value: string };
 
-const getXPath = (node: Node) => {
+const getXPath = (node: Node): string => {
   if (node.nodeType === Node.DOCUMENT_NODE) return "/";
   if (node.nodeType === Node.TEXT_NODE) {
     const parentPath = node.parentNode ? getXPath(node.parentNode) : "";
