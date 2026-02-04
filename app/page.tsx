@@ -42,6 +42,7 @@ import GitCheatSheet from "./git-cheat-sheet/page";
 import CurlToFetch from "./curl-to-fetch/page";
 import SpringBootConfigConverter from "./springboot-config-converter/page";
 import JsonPathTester from "./jsonpath-tester/page";
+import XPathTester from "./xpath-tester/page";
 import UnicodeEscape from "./unicode-escape/page";
 import JwtParser from "./jwt-parser/page";
 import JsonViewer from "./json-viewer/page";
@@ -114,6 +115,7 @@ const CATEGORIES: Category[] = [
       { id: "json-viewer", name: "JSON预览器" },
       { id: "springboot-config-converter", name: "SpringBoot配置转换器" },
       { id: "jsonpath-tester", name: "JSONPath测试" },
+      { id: "xpath-tester", name: "XPath测试" },
     ],
   },
   {
@@ -286,6 +288,8 @@ export default function Home() {
             <SpringBootConfigConverter />
           ) : selectedTool === "jsonpath-tester" ? (
             <JsonPathTester />
+          ) : selectedTool === "xpath-tester" ? (
+            <XPathTester />
           ) : selectedTool === "unicode-escape" ? (
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (

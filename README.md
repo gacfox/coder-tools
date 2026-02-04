@@ -55,6 +55,7 @@ Code Tools是一个为开发者设计的在线工具网站。
 * JSON预览器
 * SpringBoot配置转换器
 * JSONPath测试
+* XPath测试
 
 ### 审查工具
 
