@@ -41,6 +41,7 @@ import CronExpressionTester from "./cron-expression-tester/page";
 import GitCheatSheet from "./git-cheat-sheet/page";
 import CurlToFetch from "./curl-to-fetch/page";
 import SpringBootConfigConverter from "./springboot-config-converter/page";
+import JsonPathTester from "./jsonpath-tester/page";
 import UnicodeEscape from "./unicode-escape/page";
 import JwtParser from "./jwt-parser/page";
 import JsonViewer from "./json-viewer/page";
@@ -112,6 +113,7 @@ const CATEGORIES: Category[] = [
       { id: "jwt-parser", name: "JWT解析" },
       { id: "json-viewer", name: "JSON预览器" },
       { id: "springboot-config-converter", name: "SpringBoot配置转换器" },
+      { id: "jsonpath-tester", name: "JSONPath测试" },
     ],
   },
   {
@@ -282,6 +284,8 @@ export default function Home() {
             <CurlToFetch />
           ) : selectedTool === "springboot-config-converter" ? (
             <SpringBootConfigConverter />
+          ) : selectedTool === "jsonpath-tester" ? (
+            <JsonPathTester />
           ) : selectedTool === "unicode-escape" ? (
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (
