@@ -62,6 +62,8 @@ Code Tools是一个为开发者设计的在线工具网站。
 * HTTP状态码速查
 * Vim指令速查表
 * FFMPEG指令速查表
+* Eclipse快捷键速查表
+* PhotoShop快捷键速查表
 
 ### 审查工具
 

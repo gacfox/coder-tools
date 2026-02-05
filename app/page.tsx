@@ -50,6 +50,8 @@ import JsonViewer from "./json-viewer/page";
 import RandomCodeGenerator from "./random-code-generator/page";
 import VimCheatSheet from "./vim-cheat-sheet/page";
 import FfmpegCheatSheet from "./ffmpeg-cheat-sheet/page";
+import EclipseCheatSheet from "./eclipse-cheat-sheet/page";
+import PhotoshopCheatSheet from "./photoshop-cheat-sheet/page";
 
 interface Tool {
   id: string;
@@ -128,6 +130,8 @@ const CATEGORIES: Category[] = [
       { id: "http-status-code-cheatsheet", name: "HTTP状态码速查" },
       { id: "vim-cheat-sheet", name: "Vim指令速查表" },
       { id: "ffmpeg-cheat-sheet", name: "FFMPEG指令速查表" },
+      { id: "eclipse-cheat-sheet", name: "Eclipse快捷键速查表" },
+      { id: "photoshop-cheat-sheet", name: "PhotoShop快捷键速查表" },
     ],
   },
   {
@@ -308,6 +312,10 @@ export default function Home() {
             <VimCheatSheet />
           ) : selectedTool === "ffmpeg-cheat-sheet" ? (
             <FfmpegCheatSheet />
+          ) : selectedTool === "eclipse-cheat-sheet" ? (
+            <EclipseCheatSheet />
+          ) : selectedTool === "photoshop-cheat-sheet" ? (
+            <PhotoshopCheatSheet />
           ) : selectedTool === "unicode-escape" ? (
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (
