@@ -49,13 +49,17 @@ Code Tools是一个为开发者设计的在线工具网站。
 * UUIDv4生成器
 * SQL格式化工具
 * Cron表达式测试
-* Git命令速查
 * cURL转Fetch
 * JWT解析
 * JSON预览器
 * SpringBoot配置转换器
 * JSONPath测试
 * XPath测试
+
+### 文档速查
+
+* Git命令速查
+* HTTP状态码速查
 
 ### 审查工具
 
