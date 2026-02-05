@@ -48,6 +48,7 @@ import UnicodeEscape from "./unicode-escape/page";
 import JwtParser from "./jwt-parser/page";
 import JsonViewer from "./json-viewer/page";
 import RandomCodeGenerator from "./random-code-generator/page";
+import VimCheatSheet from "./vim-cheat-sheet/page";
 
 interface Tool {
   id: string;
@@ -124,6 +125,7 @@ const CATEGORIES: Category[] = [
     tools: [
       { id: "git-cheat-sheet", name: "Git命令速查" },
       { id: "http-status-code-cheatsheet", name: "HTTP状态码速查" },
+      { id: "vim-cheat-sheet", name: "Vim指令速查表" },
     ],
   },
   {
@@ -300,6 +302,8 @@ export default function Home() {
             <XPathTester />
           ) : selectedTool === "http-status-code-cheatsheet" ? (
             <HttpStatusCodeCheatsheet />
+          ) : selectedTool === "vim-cheat-sheet" ? (
+            <VimCheatSheet />
           ) : selectedTool === "unicode-escape" ? (
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (
