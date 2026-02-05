@@ -49,6 +49,7 @@ import JwtParser from "./jwt-parser/page";
 import JsonViewer from "./json-viewer/page";
 import RandomCodeGenerator from "./random-code-generator/page";
 import VimCheatSheet from "./vim-cheat-sheet/page";
+import FfmpegCheatSheet from "./ffmpeg-cheat-sheet/page";
 
 interface Tool {
   id: string;
@@ -126,6 +127,7 @@ const CATEGORIES: Category[] = [
       { id: "git-cheat-sheet", name: "Git命令速查" },
       { id: "http-status-code-cheatsheet", name: "HTTP状态码速查" },
       { id: "vim-cheat-sheet", name: "Vim指令速查表" },
+      { id: "ffmpeg-cheat-sheet", name: "FFMPEG指令速查表" },
     ],
   },
   {
@@ -304,6 +306,8 @@ export default function Home() {
             <HttpStatusCodeCheatsheet />
           ) : selectedTool === "vim-cheat-sheet" ? (
             <VimCheatSheet />
+          ) : selectedTool === "ffmpeg-cheat-sheet" ? (
+            <FfmpegCheatSheet />
           ) : selectedTool === "unicode-escape" ? (
             <UnicodeEscape />
           ) : selectedTool === "jwt-parser" ? (
