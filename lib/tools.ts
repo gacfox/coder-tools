@@ -100,3 +100,13 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
 export const TOOL_IDS = TOOL_CATEGORIES.flatMap((category) =>
   category.tools.map((tool) => tool.id)
 );
+
+export const TOOL_NAME_BY_ID = TOOL_CATEGORIES.reduce<Record<string, string>>(
+  (acc, category) => {
+    category.tools.forEach((tool) => {
+      acc[tool.id] = tool.name;
+    });
+    return acc;
+  },
+  {}
+);

@@ -1,4 +1,5 @@
 import ToolsSidebar from "./components/ToolsSidebar";
+import TitleSync from "./components/TitleSync";
 
 export default function ToolsLayout({
   children
@@ -7,6 +8,7 @@ export default function ToolsLayout({
 }) {
   return (
     <div className="flex h-full bg-background overflow-hidden">
+      <TitleSync />
       <ToolsSidebar />
       <main className="flex-1 overflow-auto p-8 relative">
         <div className="max-w-4xl mx-auto space-y-8">{children}</div>
