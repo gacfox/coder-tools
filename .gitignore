@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# VSCode
+.VSCodeCounter
+
 ### AI ###
 AGENTS*.md
 CLAUDE*.md
