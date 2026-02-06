@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -29,12 +30,12 @@ export default function RootLayout({
       >
         <div className="flex flex-col h-screen">
           <header className="h-14 glass flex items-center px-6 fixed top-0 left-0 right-0 z-50">
-            <div className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
               <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
                 C
               </div>
               <h1 className="text-lg font-semibold tracking-tight">CODER TOOLS</h1>
-            </div>
+            </Link>
             <div className="ml-auto">
               <a
                 href="https://github.com/gacfox/coder-tools"

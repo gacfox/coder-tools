@@ -78,17 +78,6 @@ export default function ToolsSidebar() {
   return (
     <aside className="w-64 glass border-r h-full flex flex-col">
       <div className="p-4 space-y-3">
-        <Link
-          href="/"
-          className={cn(
-            "block px-3 py-2 text-sm font-medium rounded-xl transition-colors",
-            pathname === "/"
-              ? "bg-blue-500 text-white shadow-md shadow-blue-500/20"
-              : "text-muted-foreground hover:bg-black/5 dark:hover:bg-white/5"
-          )}
-        >
-          工具首页
-        </Link>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
