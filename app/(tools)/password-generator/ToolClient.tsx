@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Copy, RotateCcw, Eye, EyeOff } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 export default function PasswordGenerator() {
   const [password, setPassword] = useState('');
@@ -270,8 +269,8 @@ export default function PasswordGenerator() {
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 使用滑块调整密码长度（4-128位）</li>
             <li>• 勾选要包含的字符类型（小写字母、大写字母、数字、符号）</li>
-            <li>• 点击"生成密码"按钮生成随机密码</li>
-            <li>• 点击"显示/隐藏"按钮查看或隐藏密码</li>
+            <li>• 点击&quot;生成密码&quot;按钮生成随机密码</li>
+            <li>• 点击&quot;显示/隐藏&quot;按钮查看或隐藏密码</li>
             <li>• 点击密码框右侧的复制按钮将密码复制到剪贴板</li>
           </ul>
         </div>

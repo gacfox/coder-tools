@@ -386,10 +386,10 @@ export default function AsciiArtGenerator() {
         <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
-            <li>• 点击上传区域或"选择图片"按钮上传要转换的图片</li>
+            <li>• 点击上传区域或&quot;选择图片&quot;按钮上传要转换的图片</li>
             <li>• 调整宽度设置以控制ASCII Art的精细程度</li>
             <li>• 选择不同的风格以获得不同的视觉效果</li>
-            <li>• 点击"生成ASCII Art"按钮开始转换</li>
+            <li>• 点击&quot;生成ASCII Art&quot;按钮开始转换</li>
             <li>• 转换完成后可以复制或下载生成的ASCII Art</li>
           </ul>
         </div>

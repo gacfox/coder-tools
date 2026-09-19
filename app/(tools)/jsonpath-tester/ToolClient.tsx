@@ -31,7 +31,7 @@ export default function JsonPathTester() {
       setPathsOutput(normalized.map((item) => item.path).join("\n"));
       setValuesOutput(JSON.stringify(normalized.map((item) => item.value), null, 2));
       setError("");
-    } catch (err) {
+    } catch {
       setError("解析失败：请检查 JSON 或 JSONPath 表达式");
       setPathsOutput("");
       setValuesOutput("");

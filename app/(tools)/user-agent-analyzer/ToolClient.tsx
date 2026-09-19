@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { UAParser } from 'ua-parser-js';
 import { Copy, RotateCcw } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 export default function UserAgentAnalyzer() {
   const [userAgent, setUserAgent] = useState('');
@@ -25,7 +24,7 @@ export default function UserAgentAnalyzer() {
       const parser = new UAParser(userAgent);
       const result = parser.getResult();
       setResult(result);
-    } catch (err) {
+    } catch {
       setError('解析User-Agent字符串失败');
       setResult(null);
     }
@@ -195,7 +194,7 @@ export default function UserAgentAnalyzer() {
 
           {!result && !error && (
             <div className="text-center text-muted-foreground py-8">
-              <p>输入User-Agent字符串并点击"解析"进行分析</p>
+              <p>输入User-Agent字符串并点击&quot;解析&quot;进行分析</p>
             </div>
           )}
         </div>
@@ -204,9 +203,9 @@ export default function UserAgentAnalyzer() {
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 在输入框中粘贴或输入User-Agent字符串</li>
-            <li>• 点击"解析"按钮分析User-Agent信息</li>
-            <li>• 点击"使用我的UA"快速获取当前浏览器的User-Agent</li>
-            <li>• 点击"复制"按钮复制原始User-Agent字符串</li>
+            <li>• 点击&quot;解析&quot;按钮分析User-Agent信息</li>
+            <li>• 点击&quot;使用我的UA&quot;快速获取当前浏览器的User-Agent</li>
+            <li>• 点击&quot;复制&quot;按钮复制原始User-Agent字符串</li>
           </ul>
         </div>
       </div>

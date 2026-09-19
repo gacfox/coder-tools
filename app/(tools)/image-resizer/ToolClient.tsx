@@ -14,7 +14,6 @@ export default function ImageResizer() {
   const [displayWidth, setDisplayWidth] = useState(0);
   const [displayHeight, setDisplayHeight] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -339,10 +338,10 @@ export default function ImageResizer() {
         <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
-            <li>• 点击上传区域或"选择图片"按钮上传要处理的图片</li>
+            <li>• 点击上传区域或&quot;选择图片&quot;按钮上传要处理的图片</li>
             <li>• 在缩放设置中调整图片的宽度和高度，或选择常用比例</li>
-            <li>• 点击"应用缩放"按钮预览缩放效果</li>
-            <li>• 点击"下载处理结果"保存处理后的图片</li>
+            <li>• 点击&quot;应用缩放&quot;按钮预览缩放效果</li>
+            <li>• 点击&quot;下载处理结果&quot;保存处理后的图片</li>
           </ul>
         </div>
       </div>

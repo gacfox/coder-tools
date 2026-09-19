@@ -7,7 +7,7 @@ import ReactJson from '@uiw/react-json-view';
 
 export default function JsonViewer() {
   const [jsonText, setJsonText] = useState('');
-  const [parsedJson, setParsedJson] = useState<any>(null);
+  const [parsedJson, setParsedJson] = useState<object | null>(null);
   const [error, setError] = useState('');
   const [viewMode, setViewMode] = useState<'text' | 'tree'>('text');
   const [debouncedText, setDebouncedText] = useState(jsonText);
@@ -21,21 +21,14 @@ export default function JsonViewer() {
     return () => clearTimeout(timer);
   }, [jsonText]);
 
-  // Validate when debounced text changes
-  useEffect(() => {
-    if (debouncedText) {
-      validateJson();
-    }
-  }, [debouncedText]);
-
   const formatJson = () => {
     try {
       setError('');
       const parsed = JSON.parse(jsonText);
       setParsedJson(parsed);
       setJsonText(JSON.stringify(parsed, null, 2));
-    } catch (err: any) {
-      setError(`格式化失败: ${err.message}`);
+    } catch (err) {
+      setError(`格式化失败: ${err instanceof Error ? err.message : String(err)}`);
       setParsedJson(null);
     }
   };
@@ -46,8 +39,8 @@ export default function JsonViewer() {
       const parsed = JSON.parse(jsonText);
       setParsedJson(parsed);
       setJsonText(JSON.stringify(parsed));
-    } catch (err: any) {
-      setError(`压缩失败: ${err.message}`);
+    } catch (err) {
+      setError(`压缩失败: ${err instanceof Error ? err.message : String(err)}`);
       setParsedJson(null);
     }
   };
@@ -63,9 +56,9 @@ export default function JsonViewer() {
       const parsed = JSON.parse(jsonText);
       setError('');
       setParsedJson(parsed);
-    } catch (err: any) {
+    } catch (err) {
       // Try to extract line number and context from error message
-      let errorMessage = err.message;
+      let errorMessage = err instanceof Error ? err.message : String(err);
 
       // Attempt to find line/column information in the error
       const match = errorMessage.match(/position (\d+)/);
@@ -84,13 +77,23 @@ export default function JsonViewer() {
           currentPos += lineLength;
         }
 
-        errorMessage = `JSON解析错误: ${err.message} (位置: 第${lineNum}行附近)`;
+        errorMessage = `JSON解析错误: ${errorMessage} (位置: 第${lineNum}行附近)`;
       }
 
       setError(errorMessage);
       setParsedJson(null);
     }
   };
+
+  // Validate when debounced text changes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (debouncedText) {
+        validateJson();
+      }
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [debouncedText]);
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -252,9 +255,9 @@ export default function JsonViewer() {
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 在文本视图中输入或粘贴JSON数据</li>
-            <li>• 点击"美化"按钮格式化JSON，使其更易读</li>
-            <li>• 点击"压缩"按钮移除所有不必要的空白字符</li>
-            <li>• 使用"文本视图"和"树形视图"按钮切换视图模式</li>
+            <li>• 点击&quot;美化&quot;按钮格式化JSON，使其更易读</li>
+            <li>• 点击&quot;压缩&quot;按钮移除所有不必要的空白字符</li>
+            <li>• 使用&quot;文本视图&quot;和&quot;树形视图&quot;按钮切换视图模式</li>
             <li>• 树形视图提供结构化的JSON数据预览（只读）</li>
             <li>• 如有语法错误，将在上方显示详细的错误信息</li>
           </ul>

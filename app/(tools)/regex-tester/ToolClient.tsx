@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Copy, RotateCcw, Download, Search, Mail, Globe, Network } from 'lucide-react';
+import { Copy, Download, Search, Mail, Globe, Network } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function RegexTester() {
@@ -24,46 +24,48 @@ export default function RegexTester() {
 
   // Function to apply regex and find matches
   useEffect(() => {
-    if (!regex) {
-      setMatches([]);
-      setError('');
-      setMatchCount(0);
-      return;
-    }
-
-    try {
-      // Create a global regex with the provided flags
-      const globalFlags = flags.includes('g') ? flags : flags + 'g';
-      const regexObj = new RegExp(regex, globalFlags);
-      
-      // Find all matches
-      const foundMatches = [];
-      let match;
-      let lastIndex = 0;
-      
-      // Reset lastIndex in case it's sticky
-      regexObj.lastIndex = 0;
-      
-      while ((match = regexObj.exec(text)) !== null) {
-        foundMatches.push({
-          match: match[0],
-          index: match.index
-        });
-        
-        // Prevent infinite loop for zero-length matches
-        if (match.index === regexObj.lastIndex) {
-          regexObj.lastIndex++;
-        }
+    const timer = setTimeout(() => {
+      if (!regex) {
+        setMatches([]);
+        setError('');
+        setMatchCount(0);
+        return;
       }
-      
-      setMatches(foundMatches);
-      setMatchCount(foundMatches.length);
-      setError('');
-    } catch (err) {
-      setError(`正则表达式错误: ${(err as Error).message}`);
-      setMatches([]);
-      setMatchCount(0);
-    }
+
+      try {
+        // Create a global regex with the provided flags
+        const globalFlags = flags.includes('g') ? flags : flags + 'g';
+        const regexObj = new RegExp(regex, globalFlags);
+
+        // Find all matches
+        const foundMatches = [];
+        let match;
+
+        // Reset lastIndex in case it's sticky
+        regexObj.lastIndex = 0;
+
+        while ((match = regexObj.exec(text)) !== null) {
+          foundMatches.push({
+            match: match[0],
+            index: match.index
+          });
+
+          // Prevent infinite loop for zero-length matches
+          if (match.index === regexObj.lastIndex) {
+            regexObj.lastIndex++;
+          }
+        }
+
+        setMatches(foundMatches);
+        setMatchCount(foundMatches.length);
+        setError('');
+      } catch (err) {
+        setError(`正则表达式错误: ${(err as Error).message}`);
+        setMatches([]);
+        setMatchCount(0);
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [regex, flags, text]);
 
   const handlePresetClick = (presetRegex: string) => {
@@ -289,10 +291,10 @@ ${text}`;
         <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
-            <li>• 在"正则表达式"框中输入要测试的正则表达式</li>
-            <li>• 在"标志"框中输入正则标志（如 g, i, m 等）</li>
+            <li>• 在&quot;正则表达式&quot;框中输入要测试的正则表达式</li>
+            <li>• 在&quot;标志&quot;框中输入正则标志（如 g, i, m 等）</li>
             <li>• 点击预设按钮可快速填充常用正则表达式</li>
-            <li>• 在"目标文本"框中输入要匹配的文本</li>
+            <li>• 在&quot;目标文本&quot;框中输入要匹配的文本</li>
             <li>• 匹配结果会实时高亮显示在下方区域</li>
           </ul>
         </div>

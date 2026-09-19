@@ -206,9 +206,9 @@ export default function QrGenerator() {
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 在文本框中输入要生成二维码的内容（支持文本、URL等）</li>
-            <li>• 点击"生成二维码"按钮生成二维码</li>
+            <li>• 点击&quot;生成二维码&quot;按钮生成二维码</li>
             <li>• 可以调整二维码的尺寸、前景色和背景色</li>
-            <li>• 点击"下载二维码"可保存生成的二维码图片</li>
+            <li>• 点击&quot;下载二维码&quot;可保存生成的二维码图片</li>
           </ul>
         </div>
       </div>

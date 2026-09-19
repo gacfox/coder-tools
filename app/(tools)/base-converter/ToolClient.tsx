@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Copy, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function BaseConverter() {
@@ -62,14 +62,17 @@ export default function BaseConverter() {
       setDecimal(decimalValue.toString(10));
       setHexadecimal(decimalValue.toString(16).toUpperCase());
       setError('');
-    } catch (err) {
+    } catch {
       setError('转换失败：输入的值无法解析为有效数字');
     }
   };
 
   // Convert when input value or input base changes
   useEffect(() => {
-    convert();
+    const timer = setTimeout(() => {
+      convert();
+    }, 0);
+    return () => clearTimeout(timer);
   }, [inputValue, inputBase]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -320,7 +323,7 @@ export default function BaseConverter() {
             <li>• 选择输入数值的进制格式（二进制、八进制、十进制或十六进制）</li>
             <li>• 系统会自动将输入值转换为其他所有进制格式</li>
             <li>• 转换结果会实时显示在对应进制的框中</li>
-            <li>• 点击"复制"按钮可复制对应进制的转换结果</li>
+            <li>• 点击&quot;复制&quot;按钮可复制对应进制的转换结果</li>
           </ul>
         </div>
       </div>

@@ -72,7 +72,6 @@ const setPathValue = (root: { [key: string]: NodeValue }, path: string, value: N
   for (let i = 0; i < parts.length; i += 1) {
     const part = parts[i];
     const nextPart = parts[i + 1];
-    const isIndex = /^\d+$/.test(part);
     const nextIsIndex = nextPart ? /^\d+$/.test(nextPart) : false;
 
     if (i === parts.length - 1) {
@@ -302,7 +301,7 @@ export default function SpringBootConfigConverter() {
         setOutputText(toProperties(obj));
       }
       setError("");
-    } catch (err) {
+    } catch {
       setError("转换失败：请检查输入格式");
       setOutputText("");
     }

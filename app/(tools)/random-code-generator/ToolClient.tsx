@@ -337,7 +337,7 @@ export default function RandomCodeGenerator() {
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 选择编程语言（Java、JavaScript、Python 或 C）</li>
             <li>• 使用滑块选择要生成的函数个数（1-1000）</li>
-            <li>• 点击"生成代码"按钮生成随机代码</li>
+            <li>• 点击&quot;生成代码&quot;按钮生成随机代码</li>
             <li>• 生成的代码包含一个主函数和指定数量的子函数</li>
             <li>• 子函数会随机打印3-7次随机字符串</li>
             <li>• 可以复制或下载生成的代码</li>

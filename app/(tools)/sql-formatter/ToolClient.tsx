@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { format, supportedDialects } from 'sql-formatter';
+import { format } from 'sql-formatter';
 import { Copy, RotateCcw, RotateCw } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-sql';
 import 'prismjs/themes/prism-tomorrow.css';
@@ -55,7 +54,7 @@ export default function SQLFormatter() {
       }
 
       setFormattedSQL(result);
-    } catch (err) {
+    } catch {
       // Even if there's an error, try to format the SQL to avoid throwing errors
       try {
         setFormattedSQL(format(inputSQL));
@@ -92,11 +91,14 @@ export default function SQLFormatter() {
 
   // Format SQL when input or options change
   useEffect(() => {
-    if (inputSQL) {
-      formatSQL();
-    } else {
-      setFormattedSQL('');
-    }
+    const timer = setTimeout(() => {
+      if (inputSQL) {
+        formatSQL();
+      } else {
+        setFormattedSQL('');
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [inputSQL, keywordCase, indentWidth, minify, dialect]);
 
   return (
@@ -239,9 +241,9 @@ export default function SQLFormatter() {
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 在输入框中粘贴或输入SQL查询语句</li>
             <li>• 选择所需的格式化选项（关键字大小写、缩进、方言等）</li>
-            <li>• 点击"格式化SQL"按钮美化SQL语句</li>
-            <li>• 使用"压缩模式"生成单行紧凑SQL</li>
-            <li>• 点击"复制"按钮将格式化后的SQL复制到剪贴板</li>
+            <li>• 点击&quot;格式化SQL&quot;按钮美化SQL语句</li>
+            <li>• 使用&quot;压缩模式&quot;生成单行紧凑SQL</li>
+            <li>• 点击&quot;复制&quot;按钮将格式化后的SQL复制到剪贴板</li>
           </ul>
         </div>
       </div>

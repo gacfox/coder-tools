@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Copy, RotateCcw, Download, FileText, Diff } from 'lucide-react';
+import { Copy, RotateCcw, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Improved diff algorithm to find differences between two texts
@@ -67,19 +67,22 @@ export default function TextDiff() {
   const [diffStats, setDiffStats] = useState({ added: 0, removed: 0, unchanged: 0 });
 
   useEffect(() => {
-    if (text1 !== undefined && text2 !== undefined) {
-      const diff = calculateDiff(text1, text2);
-      setDiffResult(diff);
+    const timer = setTimeout(() => {
+      if (text1 !== undefined && text2 !== undefined) {
+        const diff = calculateDiff(text1, text2);
+        setDiffResult(diff);
 
-      // Calculate stats
-      const stats = { added: 0, removed: 0, unchanged: 0 };
-      diff.forEach(item => {
-        if (item.type === 'added') stats.added++;
-        else if (item.type === 'removed') stats.removed++;
-        else stats.unchanged++;
-      });
-      setDiffStats(stats);
-    }
+        // Calculate stats
+        const stats = { added: 0, removed: 0, unchanged: 0 };
+        diff.forEach(item => {
+          if (item.type === 'added') stats.added++;
+          else if (item.type === 'removed') stats.removed++;
+          else stats.unchanged++;
+        });
+        setDiffStats(stats);
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [text1, text2]);
 
   const copyToClipboard = (text: string) => {
@@ -275,11 +278,11 @@ ${diffResult.map(item => `[${item.type}] ${item.content}`).join('\n')}
         <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
-            <li>• 在"原文本"框中输入第一段文本</li>
-            <li>• 在"新文本"框中输入第二段文本</li>
+            <li>• 在&quot;原文本&quot;框中输入第一段文本</li>
+            <li>• 在&quot;新文本&quot;框中输入第二段文本</li>
             <li>• 系统会自动对比两段文本并高亮显示差异</li>
             <li>• 绿色背景表示新增内容，红色背景表示删除内容</li>
-            <li>• 点击"交换文本"可快速交换两段文本内容</li>
+            <li>• 点击&quot;交换文本&quot;可快速交换两段文本内容</li>
           </ul>
         </div>
       </div>

@@ -2,7 +2,6 @@
 
 import { useMemo, useRef, useState } from "react";
 import { Copy } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max);

@@ -42,12 +42,15 @@ export default function ToolsSidebar() {
   }, [pathname]);
 
   useEffect(() => {
-    const activeCategory = TOOL_CATEGORIES.find((category) =>
-      category.tools.some((tool) => tool.id === activeToolId)
-    );
-    if (activeCategory && !expandedCategories.includes(activeCategory.name)) {
-      setExpandedCategories((prev) => [...prev, activeCategory.name]);
-    }
+    const timer = setTimeout(() => {
+      const activeCategory = TOOL_CATEGORIES.find((category) =>
+        category.tools.some((tool) => tool.id === activeToolId)
+      );
+      if (activeCategory && !expandedCategories.includes(activeCategory.name)) {
+        setExpandedCategories((prev) => [...prev, activeCategory.name]);
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [activeToolId, expandedCategories]);
 
   const filteredCategories = useMemo(() => {

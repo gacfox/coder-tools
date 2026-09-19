@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { Copy, RotateCcw, Download, Upload, Image as ImageIcon, FileText } from 'lucide-react';
+import { Copy, RotateCcw, Download, Upload, Image as ImageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function ImageBase64Converter() {
@@ -57,7 +57,7 @@ export default function ImageBase64Converter() {
           setError('解码失败：输入的BASE64字符串不是有效的图片格式');
           setImageSrc(null);
         };
-      } catch (err) {
+      } catch {
         setError('解码失败：输入的BASE64字符串格式不正确');
         setImageSrc(null);
       }
@@ -101,7 +101,7 @@ export default function ImageBase64Converter() {
           setError('解码失败：输入的BASE64字符串不是有效的图片格式');
           setImageSrc(null);
         };
-      } catch (err) {
+      } catch {
         setError('解码失败：输入的BASE64字符串格式不正确');
         setImageSrc(null);
       }
@@ -369,7 +369,7 @@ export default function ImageBase64Converter() {
             <li>• 图片转BASE64：上传图片文件，获取对应的BASE64编码</li>
             <li>• BASE64转图片：输入有效的图片BASE64字符串（以 data:image/ 开头），预览图片</li>
             <li>• 支持常见的图片格式：JPG, PNG, GIF, WebP 等</li>
-            <li>• 点击"交换内容"可在编码和解码模式间切换</li>
+            <li>• 点击&quot;交换内容&quot;可在编码和解码模式间切换</li>
           </ul>
         </div>
       </div>

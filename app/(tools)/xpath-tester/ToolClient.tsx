@@ -85,7 +85,7 @@ export default function XPathTester() {
       setPathsOutput(matches.map((item) => item.path).join("\n"));
       setValuesOutput(JSON.stringify(matches.map((item) => item.value), null, 2));
       setError("");
-    } catch (err) {
+    } catch {
       setError("解析失败：请检查 XML 或 XPath 表达式");
       setPathsOutput("");
       setValuesOutput("");

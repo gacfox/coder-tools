@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { Upload, Download, QrCode, Copy, RotateCcw } from 'lucide-react';
+import { Upload, Download, Copy, RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import jsQR from 'jsqr';
 
@@ -11,7 +11,6 @@ export default function QrScanner() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -53,7 +52,7 @@ export default function QrScanner() {
             } else {
               setError('未在图片中找到有效的二维码');
             }
-          } catch (err) {
+          } catch {
             setError('识别失败：无法解析图片中的二维码');
           }
         } else {
@@ -250,7 +249,7 @@ export default function QrScanner() {
         <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
-            <li>• 点击上传区域或"选择图片"按钮上传包含二维码的图片</li>
+            <li>• 点击上传区域或&quot;选择图片&quot;按钮上传包含二维码的图片</li>
             <li>• 支持常见的图片格式：JPG, PNG, GIF, WebP 等</li>
             <li>• 系统会自动识别图片中的二维码内容</li>
             <li>• 识别结果会显示在右侧区域</li>

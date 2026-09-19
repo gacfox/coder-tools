@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Copy, RotateCcw, Download, Link } from 'lucide-react';
+import { Copy, RotateCcw, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function UrlEncoderDecoder() {
@@ -15,7 +15,7 @@ export default function UrlEncoderDecoder() {
       setError('');
       const encoded = encodeURIComponent(inputText);
       setOutputText(encoded);
-    } catch (err) {
+    } catch {
       setError('编码失败：输入内容无法进行URL编码');
       setOutputText('');
     }
@@ -26,7 +26,7 @@ export default function UrlEncoderDecoder() {
       setError('');
       const decoded = decodeURIComponent(inputText);
       setOutputText(decoded);
-    } catch (err) {
+    } catch {
       setError('解码失败：输入内容不是有效的URL编码格式');
       setOutputText('');
     }
@@ -209,7 +209,7 @@ export default function UrlEncoderDecoder() {
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• URL编码：将特殊字符转换为%编码格式，用于URL传输</li>
             <li>• URL解码：将%编码格式还原为原始字符</li>
-            <li>• 点击"交换内容"可快速将输出内容复制到输入框</li>
+            <li>• 点击&quot;交换内容&quot;可快速将输出内容复制到输入框</li>
             <li>• 支持复制和下载转换结果</li>
           </ul>
         </div>

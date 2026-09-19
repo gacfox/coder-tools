@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Copy, Download, Palette } from 'lucide-react';
+import { Copy, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ColorStop {
@@ -22,22 +22,25 @@ export default function GradientGenerator() {
 
   // Generate CSS code whenever parameters change
   useEffect(() => {
-    let gradientValue = '';
-    
-    if (gradientType === 'linear') {
-      gradientValue = `linear-gradient(${angle}deg, ${colorStops
-        .sort((a, b) => a.position - b.position)
-        .map(stop => `${stop.color} ${stop.position}%`)
-        .join(', ')})`;
-    } else {
-      gradientValue = `radial-gradient(circle, ${colorStops
-        .sort((a, b) => a.position - b.position)
-        .map(stop => `${stop.color} ${stop.position}%`)
-        .join(', ')})`;
-    }
-    
-    const code = `background: ${gradientValue};`;
-    setCssCode(code);
+    const timer = setTimeout(() => {
+      let gradientValue = '';
+
+      if (gradientType === 'linear') {
+        gradientValue = `linear-gradient(${angle}deg, ${colorStops
+          .sort((a, b) => a.position - b.position)
+          .map(stop => `${stop.color} ${stop.position}%`)
+          .join(', ')})`;
+      } else {
+        gradientValue = `radial-gradient(circle, ${colorStops
+          .sort((a, b) => a.position - b.position)
+          .map(stop => `${stop.color} ${stop.position}%`)
+          .join(', ')})`;
+      }
+
+      const code = `background: ${gradientValue};`;
+      setCssCode(code);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [gradientType, angle, colorStops]);
 
   const addColorStop = () => {
@@ -92,8 +95,6 @@ export default function GradientGenerator() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   };
-
-  const selectedStop = colorStops.find(stop => stop.id === selectedColorStop);
 
   return (
     <>
@@ -270,8 +271,8 @@ export default function GradientGenerator() {
             <li>• 对于线性渐变，可以调整角度</li>
             <li>• 点击颜色节点可以编辑颜色和位置</li>
             <li>• 使用滑块调整颜色节点的位置（0-100%）</li>
-            <li>• 点击"添加节点"可增加更多颜色节点</li>
-            <li>• 点击"复制"或"下载"获取CSS代码</li>
+            <li>• 点击&quot;添加节点&quot;可增加更多颜色节点</li>
+            <li>• 点击&quot;复制&quot;或&quot;下载&quot;获取CSS代码</li>
           </ul>
         </div>
       </div>

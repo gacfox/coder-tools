@@ -1,23 +1,27 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { RotateCcw, Calendar, Clock, Copy } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { RotateCcw, Clock, Copy } from 'lucide-react';
 
 export default function TimestampConverter() {
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedTime, setSelectedTime] = useState<string>('');
-  const [timestamp, setTimestamp] = useState<number>(Date.now());
+  const [timestamp, setTimestamp] = useState<number>(0);
   const [iso8601, setIso8601] = useState<string>('');
   const [customFormat, setCustomFormat] = useState<string>('');
   const [unixTimestamp, setUnixTimestamp] = useState<number>(0);
   const [copied, setCopied] = useState<string | null>(null);
 
-  // Initialize with current date/time
-  useEffect(() => {
-    const now = new Date();
-    updateTimestamp(now);
-  }, []);
+  const formatDate = (date: Date): string => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  };
 
   const updateTimestamp = (date: Date) => {
     const ts = date.getTime();
@@ -26,6 +30,15 @@ export default function TimestampConverter() {
     setCustomFormat(formatDate(date));
     setUnixTimestamp(Math.floor(ts / 1000));
   };
+
+  // Initialize with current date/time
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const now = new Date();
+      updateTimestamp(now);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const date = e.target.value;
@@ -55,17 +68,6 @@ export default function TimestampConverter() {
     setSelectedDate(dateStr);
     setSelectedTime(timeStr);
     updateTimestamp(now);
-  };
-
-  const formatDate = (date: Date): string => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-    
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   };
 
   const copyToClipboard = (text: string, type: string) => {
@@ -226,9 +228,9 @@ export default function TimestampConverter() {
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 使用日期和时间选择器选择一个时间点</li>
-            <li>• 点击"使用当前时间"按钮快速选择当前时间</li>
+            <li>• 点击&quot;使用当前时间&quot;按钮快速选择当前时间</li>
             <li>• 右侧将显示所选时间的多种格式转换结果</li>
-            <li>• 点击"复制"按钮将格式化的时间复制到剪贴板</li>
+            <li>• 点击&quot;复制&quot;按钮将格式化的时间复制到剪贴板</li>
           </ul>
         </div>
       </div>

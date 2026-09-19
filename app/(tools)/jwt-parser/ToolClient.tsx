@@ -1,21 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Download, Key } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Download, Key } from "lucide-react";
 
 interface JwtPayload {
-  [key: string]: any;
+  iss?: string;
+  sub?: string;
+  aud?: string | string[];
+  exp?: number;
+  nbf?: number;
+  iat?: number;
+  jti?: string;
+  [key: string]: unknown;
 }
 
 export default function JwtParser() {
   const [jwtToken, setJwtToken] = useState("");
-  const [header, setHeader] = useState<any>(null);
+  const [header, setHeader] = useState<unknown>(null);
   const [payload, setPayload] = useState<JwtPayload | null>(null);
   const [signature, setSignature] = useState("");
   const [error, setError] = useState("");
-  const [decodedHeader, setDecodedHeader] = useState("");
-  const [decodedPayload, setDecodedPayload] = useState("");
 
   const parseJwt = () => {
     if (!jwtToken.trim()) {
@@ -39,7 +43,6 @@ export default function JwtParser() {
       const decodedHeader = atob(
         headerPart.replace(/-/g, "+").replace(/_/g, "/")
       );
-      setDecodedHeader(decodedHeader);
       setHeader(JSON.parse(decodedHeader));
 
       // Decode payload
@@ -47,7 +50,6 @@ export default function JwtParser() {
       const decodedPayload = atob(
         payloadPart.replace(/-/g, "+").replace(/_/g, "/")
       );
-      setDecodedPayload(decodedPayload);
       setPayload(JSON.parse(decodedPayload));
 
       // Set signature
@@ -94,8 +96,6 @@ ${signature}`;
     setHeader(null);
     setPayload(null);
     setSignature("");
-    setDecodedHeader("");
-    setDecodedPayload("");
     setError("");
   };
 
@@ -332,13 +332,13 @@ ${signature}`;
             <li>
               • 在上方输入框中粘贴完整的JWT令牌（包含头部、载荷和签名三部分）
             </li>
-            <li>• 点击"解析JWT"按钮进行解析</li>
+            <li>• 点击&quot;解析JWT&quot;按钮进行解析</li>
             <li>• 解析结果将显示在下方，包括头部、载荷和签名信息</li>
             <li>
               • 载荷详情部分会显示标准JWT声明的含义（如过期时间、签发者等）
             </li>
             <li>
-              • 可以点击各部分的"复制"按钮复制对应内容，或点击"下载"保存解析结果
+              • 可以点击各部分的&quot;复制&quot;按钮复制对应内容，或点击&quot;下载&quot;保存解析结果
             </li>
           </ul>
         </div>

@@ -15,7 +15,7 @@ export default function Base64Converter() {
       setError('');
       const encoded = btoa(unescape(encodeURIComponent(inputText)));
       setOutputText(encoded);
-    } catch (err) {
+    } catch {
       setError('编码失败：输入内容无法转换为BASE64');
       setOutputText('');
     }
@@ -30,7 +30,7 @@ export default function Base64Converter() {
       }
       const decoded = decodeURIComponent(escape(atob(inputText)));
       setOutputText(decoded);
-    } catch (err) {
+    } catch {
       setError('解码失败：输入内容不是有效的BASE64格式');
       setOutputText('');
     }
@@ -213,7 +213,7 @@ export default function Base64Converter() {
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 文本转BASE64：将普通文本转换为BASE64编码格式</li>
             <li>• BASE64转文本：将BASE64编码还原为原始文本</li>
-            <li>• 点击"交换内容"可快速将输出内容复制到输入框</li>
+            <li>• 点击&quot;交换内容&quot;可快速将输出内容复制到输入框</li>
             <li>• 支持复制和下载转换结果</li>
           </ul>
         </div>

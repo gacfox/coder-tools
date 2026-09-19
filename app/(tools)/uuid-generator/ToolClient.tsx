@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { Copy, RotateCcw, RotateCw } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 type UUIDFormat = 'standard' | 'uppercase' | 'no-dashes' | 'with-braces' | 'urn';
 
@@ -50,17 +49,23 @@ export default function UUIDGenerator() {
 
   // Generate a single UUID on initial load
   useEffect(() => {
-    setUuid(crypto.randomUUID());
+    const timer = setTimeout(() => {
+      setUuid(crypto.randomUUID());
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   // Regenerate when format changes
   useEffect(() => {
-    if (uuid) {
-      setUuid(formatUuid(uuid, format));
-    }
-    if (uuids.length > 0) {
-      setUuids(uuids.map(u => formatUuid(u, format)));
-    }
+    const timer = setTimeout(() => {
+      if (uuid) {
+        setUuid(formatUuid(uuid, format));
+      }
+      if (uuids.length > 0) {
+        setUuids(uuids.map(u => formatUuid(u, format)));
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [format]);
 
   const copyToClipboard = (text: string, id: string) => {
@@ -204,7 +209,7 @@ export default function UUIDGenerator() {
           <ul className="text-sm text-muted-foreground space-y-2">
             <li>• 选择所需的UUID格式（标准、大写、无连字符等）</li>
             <li>• 设置生成数量（1-1000个）</li>
-            <li>• 点击"生成UUID"按钮创建UUID</li>
+            <li>• 点击&quot;生成UUID&quot;按钮创建UUID</li>
             <li>• 单个UUID可单独复制，批量生成时可复制全部</li>
             <li>• 使用重置按钮清空所有结果</li>
           </ul>

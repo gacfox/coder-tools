@@ -25,7 +25,7 @@ export default function UnicodeEscape() {
         }
       });
       setOutputText(encoded);
-    } catch (err) {
+    } catch {
       setError("编码失败：输入内容无法转换为Unicode转义序列");
       setOutputText("");
     }
@@ -44,7 +44,7 @@ export default function UnicodeEscape() {
         }
       );
       setOutputText(decoded);
-    } catch (err) {
+    } catch {
       setError("解码失败：输入内容不是有效的Unicode转义序列");
       setOutputText("");
     }
@@ -240,7 +240,7 @@ export default function UnicodeEscape() {
             <li>
               • Unicode转文本：将Python风格的Unicode转义序列还原为原始文本
             </li>
-            <li>• 点击"交换内容"可快速将输出内容复制到输入框</li>
+            <li>• 点击&quot;交换内容&quot;可快速将输出内容复制到输入框</li>
             <li>• 支持复制和下载转换结果</li>
           </ul>
         </div>

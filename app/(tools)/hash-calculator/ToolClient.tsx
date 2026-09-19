@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { Upload, Hash, Download, RotateCcw } from 'lucide-react';
+import { Upload, Hash, RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Import crypto-browserify for client-side hashing
@@ -298,12 +298,12 @@ export default function HashCalculator() {
         <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
           <h3 className="font-medium mb-3">使用说明</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
-            <li>• 使用上方的切换按钮选择"文本输入"或"文件上传"模式</li>
+            <li>• 使用上方的切换按钮选择&quot;文本输入&quot;或&quot;文件上传&quot;模式</li>
             <li>• 在文本模式下，直接在文本框中输入要计算哈希值的内容</li>
             <li>• 在文件模式下，点击上传文件按钮选择要计算哈希值的文件</li>
             <li>• 从下拉菜单中选择要使用的哈希算法</li>
-            <li>• 点击"计算HASH"按钮获取结果</li>
-            <li>• 计算结果会显示在右侧，可以点击"复制"按钮复制结果</li>
+            <li>• 点击&quot;计算HASH&quot;按钮获取结果</li>
+            <li>• 计算结果会显示在右侧，可以点击&quot;复制&quot;按钮复制结果</li>
           </ul>
         </div>
       </div>
