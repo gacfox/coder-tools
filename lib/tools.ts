@@ -55,6 +55,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     icon: "binary",
     tools: [
       { id: "timestamp-converter", name: "Unix时间戳转换" },
+      { id: "timezone-converter", name: "时区转换" },
       { id: "user-agent-analyzer", name: "User-Agent分析" },
       { id: "uuid-generator", name: "UUIDv4生成器" },
       { id: "sql-formatter", name: "SQL格式化工具" },
