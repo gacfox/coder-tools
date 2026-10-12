@@ -39,6 +39,7 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
       { id: "qr-scanner", name: "二维码识别" },
       { id: "image-resizer", name: "图片缩放" },
       { id: "image-cropper", name: "图片裁剪" },
+      { id: "image-grayscale", name: "彩色图片转灰度" },
       { id: "ascii-art-generator", name: "ASCII Art生成器" }
     ]
   },
