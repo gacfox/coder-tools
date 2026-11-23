@@ -1,8 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+const validateInput = (value: string, base: number): boolean => {
+  if (!value) return true; // Allow empty input
+
+  const validChars = {
+    2: /^[01]+$/,
+    8: /^[0-7]+$/,
+    10: /^[0-9]+$/,
+    16: /^[0-9A-Fa-f]+$/
+  };
+
+  return validChars[base as keyof typeof validChars].test(value);
+};
 
 export default function BaseConverter() {
   const [inputValue, setInputValue] = useState('');
@@ -13,20 +26,7 @@ export default function BaseConverter() {
   const [hexadecimal, setHexadecimal] = useState('');
   const [error, setError] = useState('');
 
-  const validateInput = (value: string, base: number): boolean => {
-    if (!value) return true; // Allow empty input
-
-    const validChars = {
-      2: /^[01]+$/,
-      8: /^[0-7]+$/,
-      10: /^[0-9]+$/,
-      16: /^[0-9A-Fa-f]+$/
-    };
-
-    return validChars[base as keyof typeof validChars].test(value);
-  };
-
-  const convert = () => {
+  const convert = useCallback(() => {
     if (!inputValue.trim()) {
       setBinary('');
       setOctal('');
@@ -65,7 +65,7 @@ export default function BaseConverter() {
     } catch {
       setError('转换失败：输入的值无法解析为有效数字');
     }
-  };
+  }, [inputValue, inputBase]);
 
   // Convert when input value or input base changes
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function BaseConverter() {
       convert();
     }, 0);
     return () => clearTimeout(timer);
-  }, [inputValue, inputBase]);
+  }, [convert]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

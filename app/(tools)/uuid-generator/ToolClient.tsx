@@ -58,12 +58,10 @@ export default function UUIDGenerator() {
   // Regenerate when format changes
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (uuid) {
-        setUuid(formatUuid(uuid, format));
-      }
-      if (uuids.length > 0) {
-        setUuids(uuids.map(u => formatUuid(u, format)));
-      }
+      setUuid(current => (current ? formatUuid(current, format) : current));
+      setUuids(current =>
+        current.length > 0 ? current.map(u => formatUuid(u, format)) : current
+      );
     }, 0);
     return () => clearTimeout(timer);
   }, [format]);

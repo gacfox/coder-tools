@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { format } from 'sql-formatter';
 import { Copy, RotateCcw, RotateCw } from 'lucide-react';
 import Prism from 'prismjs';
@@ -28,7 +28,7 @@ export default function SQLFormatter() {
   const [error, setError] = useState<string | null>(null);
   const codeRef = useRef<HTMLElement>(null);
 
-  const formatSQL = () => {
+  const formatSQL = useCallback(() => {
     setError(null);
     try {
       if (!inputSQL.trim()) {
@@ -64,7 +64,7 @@ export default function SQLFormatter() {
         setError('SQL格式化失败，显示原始内容');
       }
     }
-  };
+  }, [inputSQL, minify, dialect, indentWidth, keywordCase]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(formattedSQL);
@@ -99,7 +99,7 @@ export default function SQLFormatter() {
       }
     }, 0);
     return () => clearTimeout(timer);
-  }, [inputSQL, keywordCase, indentWidth, minify, dialect]);
+  }, [inputSQL, formatSQL]);
 
   return (
     <>

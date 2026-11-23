@@ -45,15 +45,15 @@ export default function JsonViewer() {
     }
   };
 
-  const validateJson = () => {
-    if (!jsonText.trim()) {
+  const validateJson = (text: string) => {
+    if (!text.trim()) {
       setError('JSON内容不能为空');
       setParsedJson(null);
       return;
     }
 
     try {
-      const parsed = JSON.parse(jsonText);
+      const parsed = JSON.parse(text);
       setError('');
       setParsedJson(parsed);
     } catch (err) {
@@ -64,7 +64,7 @@ export default function JsonViewer() {
       const match = errorMessage.match(/position (\d+)/);
       if (match) {
         const position = parseInt(match[1]);
-        const lines = jsonText.split('\n');
+        const lines = text.split('\n');
         let currentPos = 0;
         let lineNum = 0;
 
@@ -89,7 +89,7 @@ export default function JsonViewer() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (debouncedText) {
-        validateJson();
+        validateJson(debouncedText);
       }
     }, 0);
     return () => clearTimeout(timer);
